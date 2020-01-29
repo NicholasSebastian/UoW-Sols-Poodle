@@ -13,7 +13,7 @@ If you don't want to use Safari as the webdriver for selenium,
 you have to change the webdriver in the source code manually yourself.
 
 ## Purpose
-I wanted to learn Selenium and BeautifulSoup.
+I wanted to learn Selenium and BeautifulSoup.  
 Also, I thought it would be pretty cool.
 
 ## Licensing
