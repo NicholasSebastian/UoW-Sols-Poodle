@@ -7,7 +7,7 @@ This script is not sanctioned by either the University of Wollongong or the Sing
 Rest assured, your UoW credentials are not stored upon input.
 
 ### Prerequisites:
-* Python 3 (I mean who the fuck doesn't have python these days)  
+* Python 3 (Who the hell doesn't have python these days)  
 * Safari is used as the preferred browser for selenium.  
 If you don't want to use Safari as the webdriver for selenium,  
 you have to change the webdriver in the source code manually yourself.
