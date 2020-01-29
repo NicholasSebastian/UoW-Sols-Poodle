@@ -1,5 +1,5 @@
 # UoW-Sols-Poodle
-Script for scraping UoW SOLS to find assignments and quizzes.  
+Script for scraping UoW SOLS Moodle to find assignments and quizzes.  
 Written in Python 3, outputs the data into a CSV file for now.  
 This script is not sanctioned by either the University of Wollongong or the Singapore Institute of Management.
 
