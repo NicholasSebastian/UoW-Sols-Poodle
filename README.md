@@ -10,6 +10,9 @@ Rest assured, your UoW credentials are not stored upon input.
 I wanted to learn Selenium and BeautifulSoup.
 Also, I thought it would be pretty cool.
 
+## Licensing
+The script is licensed under the MIT License.
+
 ## Special Thanks
 Authors of all libraries / modules used in the development of this script, in no particular order:
 * BeautifulSoup - HTML parsing.
