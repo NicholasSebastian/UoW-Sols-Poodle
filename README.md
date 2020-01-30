@@ -4,7 +4,7 @@ Written in Python 3, outputs the data into a CSV file for now.
 This script is not sanctioned by either the University of Wollongong or the Singapore Institute of Management.
 
 ### Assurance:
-Rest assured, your UoW credentials are not stored upon input.
+UoW credentials are not stored upon input.
 
 ### Prerequisites:
 * Python 3 (Who the hell doesn't have python these days)  
