@@ -5,11 +5,34 @@ from selenium.webdriver.support import expected_conditions
 from bs4 import BeautifulSoup
 import time
 
+# BEHOLD! SPAGHETTI CODE GALORE!
+
+# self defined function to find the time in the string and 
+# convert it from Australian time to Singaporean time.
+def breakDown(word):
+    new_word = []
+    broken_array = list(str(word))
+    condition = True
+
+    for char in broken_array:
+        if char.isdigit() and condition:
+            if int(char) > 3:
+                char = int(char) - 3
+            else:
+                char = int(char) + 9
+            condition = False
+        new_word.append(str(char))
+
+    return("".join(new_word))
+
 # self defined function to remove bullshit from descriptions.
 def removeJargon(description, amount_of_bullshit):
     new_words = []
     
     for index, word in enumerate(description.split()):
+        if index == (len(description.split()) - 2):
+            word = breakDown(word)
+        
         if index > amount_of_bullshit:
             new_words.append(word + " ")
     
