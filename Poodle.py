@@ -7,8 +7,7 @@ import time
 
 # BEHOLD! SPAGHETTI CODE GALORE!
 
-# self defined function to find the time in the string and 
-# convert it from Australian time to Singaporean time.
+# Finds the time in the string and convert it from Australian time to Singaporean time.
 def breakDown(word):
     new_word = []
     broken_array = list(str(word))
@@ -25,7 +24,7 @@ def breakDown(word):
 
     return("".join(new_word))
 
-# self defined function to remove bullshit from descriptions.
+# Finds and removes unwanted words from the string.
 def removeJargon(description, amount_of_bullshit):
     new_words = []
     
@@ -37,6 +36,50 @@ def removeJargon(description, amount_of_bullshit):
             new_words.append(word + " ")
     
     return("".join(new_words))
+
+# Writes the appropriate information onto the CSV file.
+def writeToCSV(course_names, \
+    quiz_names_array, quiz_status_array, quiz_deadline_array, quiz_links_array, \
+    assignment_names_array, assignment_status_array, assignment_deadline_array, assignment_links_array):
+    
+    filename = "Moodle_Subjects.csv"
+    f = open(filename, "w")
+
+    # write the respective headers on the csv file.
+    headers = "Course Name, Tasks, Status, Deadline, Links\n"
+    f.write(headers)
+
+    # loop through all the courses in the array.
+    for i in range(len(course_names)):
+
+        # write the course name to the csv file.
+        f.write(course_names[i])
+
+        # if there are any quizzes or assignments, write them onto the csv file.
+        if quiz_names_array[i] or assignment_names_array[i]:
+            for j in range(len(quiz_names_array[i])):
+                f.write("," \
+                    + quiz_names_array[i][j].replace(",", " |") + "," \
+                    + quiz_status_array[i][j] + "," \
+                    + quiz_deadline_array[i][j].replace(",", " |") + "," \
+                    + quiz_links_array[i][j] + "\n")
+
+            for j in range(len(assignment_names_array[i])):
+                f.write("," \
+                    + assignment_names_array[i][j].replace(",", " |") + "," \
+                    + assignment_status_array[i][j] + "," \
+                    + assignment_deadline_array[i][j].replace(",", " |") + "," \
+                    + assignment_links_array[i][j] + "\n")
+                
+                if j == (len(assignment_names_array[i]) - 1):
+                    f.write("\n")
+        
+        # if there aren't any quizzes or assignments, skip a line.
+        else:
+            f.write(",None\n\n")
+
+    # close the csv file writer.
+    f.close()
 
 # where the actual program begins.
 start_time = time.time()
@@ -215,44 +258,9 @@ driver.close()
 
 # open a csv file and prepare to write on the file.
 print("[Poodle] Exporting to CSV file...")
-filename = "Moodle_Subjects.csv"
-f = open(filename, "w")
-
-# write the respective headers on the csv file.
-headers = "Course Name, Tasks, Status, Deadline, Links\n"
-f.write(headers)
-
-# loop through all the courses in the array.
-for i in range(len(course_names)):
-
-    # write the course name to the csv file.
-    f.write(course_names[i])
-
-    # if there are any quizzes or assignments, write them onto the csv file.
-    if quiz_names_array[i] or assignment_names_array[i]:
-        for j in range(len(quiz_names_array[i])):
-            f.write("," \
-                + quiz_names_array[i][j].replace(",", " |") + "," \
-                + quiz_status_array[i][j] + "," \
-                + quiz_deadline_array[i][j].replace(",", " |") + "," \
-                + quiz_links_array[i][j] + "\n")
-
-        for j in range(len(assignment_names_array[i])):
-            f.write("," \
-                + assignment_names_array[i][j].replace(",", " |") + "," \
-                + assignment_status_array[i][j] + "," \
-                + assignment_deadline_array[i][j].replace(",", " |") + "," \
-                + assignment_links_array[i][j] + "\n")
-            
-            if j == (len(assignment_names_array[i]) - 1):
-                f.write("\n")
-    
-    # if there aren't any quizzes or assignments, skip a line.
-    else:
-        f.write(",None\n\n")
-
-# close the csv file writer.
-f.close()
+writeToCSV(course_names, \
+    quiz_names_array, quiz_status_array, quiz_deadline_array, quiz_links_array, \
+    assignment_names_array, assignment_status_array, assignment_deadline_array, assignment_links_array)
 
 # print time taken in console.
 now_time = time.time()
